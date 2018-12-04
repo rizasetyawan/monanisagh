@@ -1,4 +1,5 @@
 <?php
+  error_reporting(E_ERROR | E_WARNING | E_PARSE);
   session_start();
   
   include "connection.php";
@@ -13,18 +14,14 @@
     $qty = $_POST['qty'];
     $productcode = $_POST['productcode'];
     $submit = $_POST['submit'];
-    $admin = $_SESSION['username'];
+    $admin = $_SESSION['username'];    
 
-
-
-    $insert = "INSERT INTO stock SET id = 'NULL', created_date = '$date', season = '$season', product = '$product', color = '$color', status = '$status', qty = '$qty', created_by = '$admin', product_code = '$productcode'";
-    $result = mysqli_query($conn, $insert);
-
-    if ($result) {
-      echo "";
-      header('Location: index.php');
+    if ($admin !== NULL) {
+      $insert = "INSERT INTO stock SET id = 'NULL', created_date = '$date', season = '$season', product = '$product', color = '$color', status = '$status', qty = '$qty', created_by = '$admin', product_code = '$productcode'";
+      $result = mysqli_query($conn, $insert);
+      echo("<script>alert('Data Updated!');window.location.href='index.php';</script>");
     } else {
-      echo "Input gagal";
+      echo("<script>alert('Please login first to update data!');window.location.href='index.php';</script>");
     }
     mysqli_close($conn);
   }

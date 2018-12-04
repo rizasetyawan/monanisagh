@@ -27,7 +27,7 @@ $admin = $_SESSION['username'];
                 <div class="form-group row">
                   <label for="season" class="col-sm-3 col-form-label">Season</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="season" name="season" placeholder="Season">
+                    <input type="text" class="form-control" id="season" name="season" placeholder="Season" required>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -42,31 +42,31 @@ $admin = $_SESSION['username'];
                 <div class="form-group row">
                   <label for="product" class="col-sm-3 col-form-label">Product</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="product" name="product" placeholder="Product">
+                    <input type="text" class="form-control" id="product" name="product" placeholder="Product" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="color" class="col-sm-3 col-form-label">Color</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="color" name="color" placeholder="Color">
+                    <input type="text" class="form-control" id="color" name="color" placeholder="Color" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="status" class="col-sm-3 col-form-label">Status</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="status" name="status" placeholder="Status">
+                    <input type="text" class="form-control" id="status" name="status" placeholder="Status" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="qty" class="col-sm-3 col-form-label">Qty</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="qty" name="qty" placeholder="Qty">
+                    <input type="text" class="form-control" id="qty" name="qty" placeholder="Qty" required>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="productcode" class="col-sm-3 col-form-label">Product Code</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="productcode" name="productcode" placeholder="Product Code">
+                    <input type="text" class="form-control" id="productcode" name="productcode" placeholder="Product Code" required>
                   </div>
                 </div>
                 <div class="form-group row">
