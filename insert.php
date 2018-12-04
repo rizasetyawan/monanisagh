@@ -4,7 +4,6 @@
   
   include "connection.php";
   if (isset($_POST["submit"])) {
-    // $date = $_POST['date'];
     date_default_timezone_set('Asia/Jakarta');
     $date = date('Y-m-d h:i:s', time());
     $season = $_POST['season'];

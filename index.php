@@ -31,15 +31,6 @@ $admin = $_SESSION['username'];
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label for="Sesion1" class="col-sm-3 col-form-label">Sesion 1</label>
-                  <div class="col-sm-9">
-                    <select class="form-control" id="Sesion1" name="season">
-                      <option>1</option>
-                      <option>2</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="form-group row">
                   <label for="product" class="col-sm-3 col-form-label">Product</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="product" name="product" placeholder="Product" required>
@@ -54,7 +45,10 @@ $admin = $_SESSION['username'];
                 <div class="form-group row">
                   <label for="status" class="col-sm-3 col-form-label">Status</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="status" name="status" placeholder="Status" required>
+                  <select class="form-control" id="Sesion1" name="season">
+                      <option>Restock</option>
+                      <option>Penjualan</option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group row">
