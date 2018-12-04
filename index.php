@@ -1,4 +1,10 @@
 <!doctype html>
+<?php
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+session_start();
+include "connection.php";
+$admin = $_SESSION['username'];
+?>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -97,8 +103,7 @@
                     <th scope="col">Product Code</th>
                   </tr>
                 </thead>
-                <?php
-                  include "connection.php";
+                <?php                  
                   $select = "SELECT * from stock";
                   if (mysqli_query($conn, $select)) {
                   echo "";
@@ -149,6 +154,9 @@
                   }
                 ?>
               </table>
+            </div>
+            <div class="col-sm-10">
+            <a href="koneksi_logout.php"><button class="btn waves-effect grey darken-4" type="button" name="action">Logout</button></a>
             </div>
             <div class="card-footer text-muted">
               2 days ago
