@@ -54,7 +54,7 @@ $admin = $_SESSION['username'];
                 <div class="form-group row">
                   <label for="qty" class="col-sm-3 col-form-label">Qty</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="qty" name="qty" placeholder="Qty" required>
+                    <input type="number" min="1" class="form-control" id="qty" name="qty" placeholder="Qty" required>
                   </div>
                 </div>
                 <div class="form-group row">
