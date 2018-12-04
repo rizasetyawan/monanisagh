@@ -18,12 +18,6 @@
             <div class="card-header">Form Input</div>
             <div class="card-body">
               <form method="post" action="insert.php">
-              <div class="form-group row">
-                  <label for="date" class="col-sm-3 col-form-label">Date Created</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="date" name="date" value="<?php date_default_timezone_set('Asia/Jakarta');$date = date('Y-m-d h:i:s', time());echo $date;?>" disabled>
-                  </div>
-                </div>
                 <div class="form-group row">
                   <label for="season" class="col-sm-3 col-form-label">Season</label>
                   <div class="col-sm-9">
@@ -119,7 +113,7 @@
                 <tbody>
                   <tr>
                     <th scope="row">
-                      <?php echo $count; ?>
+                      <?php echo $row["id"]; ?>
                     </th>
                     <td>
                       <?php echo $row["created_date"]; ?>
