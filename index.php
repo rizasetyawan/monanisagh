@@ -45,7 +45,7 @@ $admin = $_SESSION['username'];
                 <div class="form-group row">
                   <label for="status" class="col-sm-3 col-form-label">Status</label>
                   <div class="col-sm-9">
-                  <select class="form-control" id="Sesion1" name="season">
+                  <select class="form-control" id="status" name="status">
                       <option>Restock</option>
                       <option>Penjualan</option>
                     </select>
