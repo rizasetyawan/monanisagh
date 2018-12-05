@@ -18,9 +18,9 @@
     if ($admin !== NULL) {
       $insert = "INSERT INTO stock SET id = 'NULL', created_date = '$date', season = '$season', product = '$product', color = '$color', status = '$status', qty = '$qty', created_by = '$admin', product_code = '$productcode'";
       $result = mysqli_query($conn, $insert);
-      echo("<script>alert('Data Updated!');window.location.href='index.php';</script>");
+      echo("<script>alert('Data Updated!');window.location.href='rest_penj.php';</script>");
     } else {
-      echo("<script>alert('Please login first to update data!');window.location.href='index.php';</script>");
+      echo("<script>alert('Please login first to update data!');window.location.href='rest_penj.php';</script>");
     }
     mysqli_close($conn);
   }
