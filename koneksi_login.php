@@ -15,7 +15,7 @@ if ($rowcount == 1){
     setcookie($username);
 
     $_SESSION['login']='true';
-    header("location: index.php");
+    header("location: dashboard.php");
 }else{
     echo("<script>alert('Username or Password Incorrect!');window.location.href='login.php';</script>");
 }
