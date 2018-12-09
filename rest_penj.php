@@ -123,7 +123,7 @@ $admin = $_SESSION['username'];
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.open("GET", "ajax.php?season="+document.getElementById("season").value, false);
         xmlhttp.send(null);
-        alert(xmlhttp.responseText);
+        // alert(xmlhttp.responseText);
         document.getElementById("product").innerHTML=xmlhttp.responseText;
       }    
       function change_product(){
@@ -131,7 +131,7 @@ $admin = $_SESSION['username'];
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.open("GET", "ajax.php?product="+document.getElementById("product").value, false);
         xmlhttp.send(null);        
-        alert(xmlhttp.responseText);
+        // alert(xmlhttp.responseText);
         document.getElementById("color").innerHTML=xmlhttp.responseText;
       }    
     </script>                 
