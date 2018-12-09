@@ -13,6 +13,8 @@ $admin = $_SESSION['username'];
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <!-- Option Value JQuery-->
+    
   </head>
   <body>
     <!-- Navbar Menu -->
@@ -55,23 +57,36 @@ $admin = $_SESSION['username'];
                 <div class="form-group row">
                   <label for="season" class="col-sm-3 col-form-label">Season</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="season" name="season" placeholder="Season" required>
+                    <select class="form-control" id="season" name="season" onChange="change_season()">
+                    <option> Select </option>
+                    <?php 
+                      $sql_season = mysqli_query($conn, 'SELECT season FROM new_stock GROUP BY season');
+                      while ($row_season = mysqli_fetch_array($sql_season)){                        
+                    ?>
+                        <option value="<?php echo $row_season['season'];?>" id="<?php echo $row_season['season'];?>"><?php echo $row_season['season'];?></option>    
+                      <?php }?>                 
+                    </select>
                   </div>
                 </div>
                 <!-- PRODUCT -->
                 <div class="form-group row">
                   <label for="product" class="col-sm-3 col-form-label">Product</label>
                   <div class="col-sm-9">
-                  <input type="text" class="form-control" id="product" name="product" placeholder="Product" required>
+                  <select class="form-control" id="product" name="product" onChange='change_product()'>
+                    <option id = "product" value = "product"> Select </option>
+                  </select>
                   </div>
                 </div>
                 <!-- COLOR -->
                 <div class="form-group row">
                   <label for="color" class="col-sm-3 col-form-label">Color</label>
                   <div class="col-sm-9">
-                  <input type="text" class="form-control" id="color" name="color" placeholder="Color" required>          
+                    <select class="form-control" id="color" name="color">      
+                      <option id = "color" value = "color"> Select </option> 
+                    </select>
                   </div>
                 </div>
+                <!-- STATUS -->
                 <div class="form-group row">
                   <label for="status" class="col-sm-3 col-form-label">Status</label>
                   <div class="col-sm-9">
@@ -103,14 +118,30 @@ $admin = $_SESSION['username'];
     </div> <!-- end container -->
 
 
-
+    <script type="text/javascript"> 
+      function change_season(){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET", "ajax.php?season="+document.getElementById("season").value, false);
+        xmlhttp.send(null);
+        alert(xmlhttp.responseText);
+        document.getElementById("product").innerHTML=xmlhttp.responseText;
+      }    
+      function change_product(){
+        // alert(document.getElementById("product").value);
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET", "ajax.php?product="+document.getElementById("product").value, false);
+        xmlhttp.send(null);        
+        alert(xmlhttp.responseText);
+        document.getElementById("color").innerHTML=xmlhttp.responseText;
+      }    
+    </script>                 
     <!-- Optional JavaScript -->
-    <script src="jquery-1.10.2.min.js"></script>
+    <!-- <script src="jquery-1.10.2.min.js"></script>
     <script src="jquery.chained.min.js"></script>
     <script>
       $("#product").chained("#season");
       $("#color").chained("#product");
-    </script>
+    </script> -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 
