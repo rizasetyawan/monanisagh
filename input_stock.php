@@ -50,7 +50,7 @@ $admin = $_SESSION['username'];
           <div class="card bg-light">
             <div class="card-header">Form Input</div>
             <div class="card-body">
-              <form method="post" action="koneksi_insertstock.php">
+              <form method="post" action="koneksi_newstock.php">
                 <div class="form-group row">
                   <label for="season" class="col-sm-3 col-form-label">Season</label>
                   <div class="col-sm-9">
@@ -67,6 +67,12 @@ $admin = $_SESSION['username'];
                   <label for="color" class="col-sm-3 col-form-label">Color</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="color" name="color" placeholder="Color" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="color" class="col-sm-3 col-form-label">Qty</label>
+                  <div class="col-sm-9">
+                    <input type="number" min="1" class="form-control" id="qty" name="qty" placeholder="Qty" required>
                   </div>
                 </div>
                 <div class="form-group row">

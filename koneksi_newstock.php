@@ -4,15 +4,19 @@
   
   include "connection.php";
   if (isset($_POST["submit"])) {
-    
+    date_default_timezone_set('Asia/Jakarta');
+    $date = date('Y-m-d h:i:s', time());
     $season = $_POST['season'];
     $product = $_POST['product'];
     $color = $_POST['color'];
+    $qty = $_POST['qty'];
     $submit = $_POST['submit'];
-    $admin = $_SESSION['username'];    
+    $admin = $_SESSION['username'];  
+    $code = $season."-".substr($product, 0,2)."-".$color;   
 
     if ($admin !== NULL) {
-      $insert = "INSERT INTO season SET id_season = 'NULL', season = '$season', product = '$product', color = '$color'";
+      $insert = "INSERT INTO new_stock SET id = 'NULL', created_date = '$date', season = '$season', 
+        product = '$product', color = '$color', status = 'New Stock', qty = '$qty', created_by = '$admin', product_code = '$code'";
       $result = mysqli_query($conn, $insert);
       echo("<script>alert('Data Updated!');window.location.href='input_stock.php';</script>");
     }else{

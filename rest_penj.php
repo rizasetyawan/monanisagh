@@ -51,30 +51,33 @@ $admin = $_SESSION['username'];
             <div class="card-header">Form Input</div>
             <div class="card-body">
               <form method="post" action="koneksi_insert.php">
+              <!-- SEASON -->
                 <div class="form-group row">
                   <label for="season" class="col-sm-3 col-form-label">Season</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="season" name="season" placeholder="Season" required>
                   </div>
                 </div>
+                <!-- PRODUCT -->
                 <div class="form-group row">
                   <label for="product" class="col-sm-3 col-form-label">Product</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="product" name="product" placeholder="Product" required>
+                  <input type="text" class="form-control" id="product" name="product" placeholder="Product" required>
                   </div>
                 </div>
+                <!-- COLOR -->
                 <div class="form-group row">
                   <label for="color" class="col-sm-3 col-form-label">Color</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="color" name="color" placeholder="Color" required>
+                  <input type="text" class="form-control" id="color" name="color" placeholder="Color" required>          
                   </div>
                 </div>
                 <div class="form-group row">
                   <label for="status" class="col-sm-3 col-form-label">Status</label>
                   <div class="col-sm-9">
-                  <select class="form-control" id="status" name="status">
-                      <option>Restock</option>
-                      <option>Penjualan</option>
+                    <select class="form-control" id="status" name="status">
+                        <option>Penjualan</option>
+                        <option>Restock</option>                        
                     </select>
                   </div>
                 </div>
@@ -82,12 +85,6 @@ $admin = $_SESSION['username'];
                   <label for="qty" class="col-sm-3 col-form-label">Qty</label>
                   <div class="col-sm-9">
                     <input type="number" min="1" class="form-control" id="qty" name="qty" placeholder="Qty" required>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="productcode" class="col-sm-3 col-form-label">Product Code</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="productcode" name="productcode" placeholder="Product Code" required>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -108,6 +105,12 @@ $admin = $_SESSION['username'];
 
 
     <!-- Optional JavaScript -->
+    <script src="jquery-1.10.2.min.js"></script>
+    <script src="jquery.chained.min.js"></script>
+    <script>
+      $("#product").chained("#season");
+      $("#color").chained("#product");
+    </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 
