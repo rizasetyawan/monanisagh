@@ -67,7 +67,7 @@ $admin = $_SESSION['username'];
                   </tr>
                 </thead>
                 <?php                  
-                  $select = "SELECT * from stock";
+                  $select = "SELECT * from stock UNION SELECT * FROM new_stock ORDER BY created_date ASC";
                   if (mysqli_query($conn, $select)) {
                   echo "";
                   } else {

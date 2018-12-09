@@ -5,7 +5,7 @@
   include "connection.php";
   if (isset($_POST["submit"])) {
     date_default_timezone_set('Asia/Jakarta');
-    $date = date('Y-m-d h:i:s', time());
+    $date = date('Y-m-d H:i:s', time());
     $season = $_POST['season'];
     $product = $_POST['product'];
     $color = $_POST['color'];
