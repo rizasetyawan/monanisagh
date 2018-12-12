@@ -14,7 +14,7 @@ $admin = $_SESSION['username'];
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Option Value JQuery-->
-    
+
   </head>
   <body>
     <!-- Navbar Menu -->
@@ -59,12 +59,12 @@ $admin = $_SESSION['username'];
                   <div class="col-sm-9">
                     <select class="form-control" id="season" name="season" onChange="change_season()">
                     <option> Select </option>
-                    <?php 
+                    <?php
                       $sql_season = mysqli_query($conn, 'SELECT season FROM new_stock GROUP BY season');
-                      while ($row_season = mysqli_fetch_array($sql_season)){                        
+                      while ($row_season = mysqli_fetch_array($sql_season)){
                     ?>
-                        <option value="<?php echo $row_season['season'];?>" id="<?php echo $row_season['season'];?>"><?php echo $row_season['season'];?></option>    
-                      <?php }?>                 
+                        <option value="<?php echo $row_season['season'];?>" id="<?php echo $row_season['season'];?>"><?php echo $row_season['season'];?></option>
+                      <?php }?>
                     </select>
                   </div>
                 </div>
@@ -81,8 +81,8 @@ $admin = $_SESSION['username'];
                 <div class="form-group row">
                   <label for="color" class="col-sm-3 col-form-label">Color</label>
                   <div class="col-sm-9">
-                    <select class="form-control" id="color" name="color">      
-                      <option id = "color" value = "color"> Select </option> 
+                    <select class="form-control" id="color" name="color" onChange='change_color()'>
+                      <option id = "color" value = "color"> Select </option>
                     </select>
                   </div>
                 </div>
@@ -92,7 +92,7 @@ $admin = $_SESSION['username'];
                   <div class="col-sm-9">
                     <select class="form-control" id="status" name="status">
                         <option>Penjualan</option>
-                        <option>Restock</option>                        
+                        <option>Restock</option>
                     </select>
                   </div>
                 </div>
@@ -114,27 +114,33 @@ $admin = $_SESSION['username'];
           </div>
 
         </div>
-      </div>      
+      </div>
     </div> <!-- end container -->
 
 
-    <script type="text/javascript"> 
+    <script type="text/javascript">
+
+      var a;
+
       function change_season(){
-        var xmlhttp=new XMLHttpRequest();
-        xmlhttp.open("GET", "ajax.php?season="+document.getElementById("season").value, false);
-        xmlhttp.send(null);
-        // alert(xmlhttp.responseText);
-        document.getElementById("product").innerHTML=xmlhttp.responseText;
-      }    
+        var xmlhttpseason=new XMLHttpRequest();
+        xmlhttpseason.open("GET", "ajax.php?season="+document.getElementById("season").value, false);
+        a = document.getElementById("season").value;
+        xmlhttpseason.send();
+        // alert(a);
+        document.getElementById("product").innerHTML=xmlhttpseason.responseText;
+      }
+
       function change_product(){
+        
         // alert(document.getElementById("product").value);
-        var xmlhttp=new XMLHttpRequest();
-        xmlhttp.open("GET", "ajax.php?product="+document.getElementById("product").value, false);
-        xmlhttp.send(null);        
-        // alert(xmlhttp.responseText);
-        document.getElementById("color").innerHTML=xmlhttp.responseText;
-      }    
-    </script>                 
+        var xmlhttpproduct=new XMLHttpRequest();
+        xmlhttpproduct.open("GET", "ajax.php?product="+document.getElementById("product").value +"&season="+ a, false);
+        xmlhttpproduct.send();
+        //alert(xmlhttp.responseText);
+        document.getElementById("color").innerHTML=xmlhttpproduct.responseText;
+      }
+    </script>
     <!-- Optional JavaScript -->
     <!-- <script src="jquery-1.10.2.min.js"></script>
     <script src="jquery.chained.min.js"></script>
