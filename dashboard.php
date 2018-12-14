@@ -44,8 +44,55 @@ $admin = $_SESSION['username'];
 
 <!-- Form Input -->
     <div class="container">
-      
-    </div>
+    <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="card text-white bg-dark mb-3" style="width: 16rem;">
+            <div class="card-body">
+              <h5 class="card-title">Jumlah Stock</h5>
+                <?php
+                  $jumlah_stock = 0;
+                  $qry = mysqli_query($conn,"SELECT sum(qty) total from (SELECT qty FROM new_stock UNION ALL SELECT qty FROM stock WHERE STATUS = 'restock') t");
+                  while($row = mysqli_fetch_array($qry)){
+                    $jumlah_stock = $row[0];
+                  }
+                ?>
+              <p class="card-text"><?php echo $jumlah_stock;?> Pcs</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card text-white bg-dark mb-3" style="width: 16rem;">
+            <div class="card-body">
+              <h5 class="card-title">Jumlah Terjual</h5>
+                <?php
+                  $penjualan = 0;
+                  $qry = mysqli_query($conn,"SELECT sum(qty) FROM stock WHERE STATUS = 'Penjualan'");
+                  while($row = mysqli_fetch_array($qry)){
+                    $penjualan = $row[0];
+                  }
+                ?>
+              <p class="card-text"><?php echo $penjualan;?> Pcs</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="card text-white bg-dark mb-3" style="width: 16rem;">
+            <div class="card-body">
+              <h5 class="card-title">Jumlah Terjual</h5>
+                <?php
+                  $penjualan = 0;
+                  $qry = mysqli_query($conn,"SELECT sum(qty) FROM stock WHERE STATUS = 'Penjualan'");
+                  while($row = mysqli_fetch_array($qry)){
+                    $penjualan = $row[0];
+                  }
+                ?>
+              <p class="card-text"><?php echo $penjualan;?> Pcs</p>
+            </div>
+          </div>
+        </div>  
+      </div>         
+    </div> <!-- End of Container-->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
