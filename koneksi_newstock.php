@@ -15,7 +15,7 @@
     $code = $season."-".substr($product, 0,2)."-".$color;   
 
     if ($admin !== NULL) {
-      $insert = "INSERT INTO new_stock SET id = 'NULL', created_date = '$date', season = '$season', 
+      $insert = "INSERT INTO new_stock SET created_date = '$date', season = '$season', 
         product = '$product', color = '$color', status = 'New Stock', qty = '$qty', created_by = '$admin', product_code = '$code'";
       $result = mysqli_query($conn, $insert);
       echo("<script>alert('Data Updated!');window.location.href='input_stock.php';</script>");
