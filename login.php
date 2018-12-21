@@ -20,7 +20,7 @@ include("connection.php");
       <img class="logo" src="img/logo.png" alt="">
       <div class="row">
         <div class="col-sm-6 offset-sm-3">
-          <div class="card bg-light">
+          <div class="card bg-transparent">
             <div class="card-header">Admin Login</div>
             <div class="card-body">
               <form method="post" action="koneksi_login.php">

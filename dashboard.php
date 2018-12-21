@@ -14,7 +14,10 @@ $admin = $_SESSION['username'];
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Addition CSS -->
     <link type="text/css" rel="stylesheet" href="css/dashboard.css"  media="screen,projection"/>
-
+    <!-- Script Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <!-- CSS Chart.js -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> -->
   </head>
   <body>
     <!-- Navbar Menu -->
@@ -64,8 +67,8 @@ $admin = $_SESSION['username'];
       </div>
     </nav>
     <!-- Content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">      
-      <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">  
+    <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->        
       <div class="row">
         <div class="col-sm-3">
           <div class="card text-white bg-dark mb-3" style="width: 16rem;">
@@ -112,38 +115,79 @@ $admin = $_SESSION['username'];
             </div>
           </div>
         </div>  
-      </div> <!-- End of Row -->     
+      </div> <!-- End of Row -->  
+      <!-- Chart -->
       <div class="row">
-      <div class="card-body">
-              <table class="table table-hover">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">No.</th>
-                    <th scope="col">Season</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Input Stock</th>
-                    <th scope="col">Restock</th>
-                    <th scope="col">Penjualan</th>
-                    <th scope="col">Sisa Stock</th>
-                  </tr>
-                </thead>
-                <?php                  
-                  $select = mysqli_query($conn,"SELECT * FROM new_stock");
-                  
-                  $count=1;
-                  $numbering=1;
-                    while($row = mysqli_fetch_array($select)){ 
-                      $code = $row['product_code'];  
-                ?>
-                <tbody>
-                  <tr>
-                  <!-- no -->
-                    <th scope="row">
-                      <?php echo $numbering; $numbering++; ?>
-                    </th>
-                    <!-- season -->
-                    <td>
+        <div class="col s12">
+          <div class="card"> <!--warna-->
+            <div class="card-content black-text">
+              <div class="chart-responsive">
+                <canvas id="linechart" class="chartjs-render-monitor"></canvas>
+                <script>
+                  var ctx = document.getElementById("linechart").getContext('2d');
+                  var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5"],
+                        datasets: [{
+                            label: 'Penjualan',
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [
+                              'rgba(255, 99, 132, 0.2)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                      scales: {
+                          yAxes: [{
+                              ticks: {
+                                  beginAtZero:true
+                              }
+                          }]
+                      }
+                    }
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- endchart -->
+
+
+      <!-- Table -->
+      <div class="row">
+        <div class="card-body">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Season</th>
+                <th scope="col">Product</th>
+                <th scope="col">Color</th>
+                <th scope="col">Input Stock</th>
+                <th scope="col">Restock</th>
+                <th scope="col">Penjualan</th>
+                <th scope="col">Sisa Stock</th>
+              </tr>
+            </thead>
+          <?php                  
+            $select = mysqli_query($conn,"SELECT * FROM new_stock");
+               
+            $count=1;
+            $numbering=1;
+            while($row = mysqli_fetch_array($select)){ 
+              $code = $row['product_code'];  
+          ?>
+          <tbody>
+            <tr>
+            <!-- no -->
+              <th scope="row">
+              <?php echo $numbering; $numbering++; ?>
+              </th>
+            <!-- season -->
+              <td>
                       <?php echo $row["season"]; ?>
                     </td>
                     <!-- product -->
@@ -200,9 +244,7 @@ $admin = $_SESSION['username'];
               </table>
             </div> 
             </div>
-        </main>
-    
-      
+        </main>     
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -65,76 +65,70 @@ $admin = $_SESSION['username'];
     </nav>
     <!-- Content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">      
-    <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
-      <div class="row">
-        <div class="col-sm-6 offset-sm-3">
-          <div class="card bg-light">
-            <div class="card-header">Restock/Penjualan</div>
-            <div class="card-body">
-              <form method="post" action="koneksi_insert.php">
+      <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
+        <div class="row">
+          <div class="col-sm-6">
+            <h2>Restock/Penjualan</h2>
+            <div class="vc_empty_space" style="height: 20px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
+            <form method="post" action="koneksi_insert.php">
               <!-- SEASON -->
-                <div class="form-group row">
-                  <label for="season" class="col-sm-3 col-form-label">Season</label>
-                  <div class="col-sm-9">
-                    <select class="form-control" id="season" name="season" onChange="change_season()">
+              <div class="form-group row">
+                <label for="season" class="col-sm-3 col-form-label">Season</label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="season" name="season" onChange="change_season()">
                     <option> Select </option>
-                    <?php 
-                      $sql_season = mysqli_query($conn, 'SELECT season FROM new_stock GROUP BY season');
-                      while ($row_season = mysqli_fetch_array($sql_season)){                        
-                    ?>
-                        <option value="<?php echo $row_season['season'];?>" id="<?php echo $row_season['season'];?>"><?php echo $row_season['season'];?></option>    
+                      <?php 
+                        $sql_season = mysqli_query($conn, 'SELECT season FROM new_stock GROUP BY season');
+                        while ($row_season = mysqli_fetch_array($sql_season)){                        
+                      ?>
+                    <option value="<?php echo $row_season['season'];?>" id="<?php echo $row_season['season'];?>"><?php echo $row_season['season'];?></option>    
                       <?php }?>                 
-                    </select>
-                  </div>
+                  </select>
                 </div>
-                <!-- PRODUCT -->
-                <div class="form-group row">
-                  <label for="product" class="col-sm-3 col-form-label">Product</label>
-                  <div class="col-sm-9">
+              </div>
+              <!-- PRODUCT -->
+              <div class="form-group row">
+                <label for="product" class="col-sm-3 col-form-label">Product</label>
+                <div class="col-sm-9">
                   <select class="form-control" id="product" name="product" onChange='change_product()'>
                     <option id = "product" value = "product"> Select </option>
                   </select>
-                  </div>
                 </div>
-                <!-- COLOR -->
-                <div class="form-group row">
-                  <label for="color" class="col-sm-3 col-form-label">Color</label>
-                  <div class="col-sm-9">
-                    <select class="form-control" id="color" name="color">      
-                      <option id = "color" value = "color"> Select </option> 
-                    </select>
-                  </div>
+              </div>
+              <!-- COLOR -->
+              <div class="form-group row">
+                <label for="color" class="col-sm-3 col-form-label">Color</label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="color" name="color">      
+                    <option id = "color" value = "color"> Select </option> 
+                  </select>
                 </div>
-                <!-- STATUS -->
-                <div class="form-group row">
-                  <label for="status" class="col-sm-3 col-form-label">Status</label>
-                  <div class="col-sm-9">
-                    <select class="form-control" id="status" name="status">
-                        <option>Penjualan</option>
-                        <option>Restock</option>                        
-                    </select>
-                  </div>
+              </div>
+              <!-- STATUS -->
+              <div class="form-group row">
+                <label for="status" class="col-sm-3 col-form-label">Status</label>
+                <div class="col-sm-9">
+                  <select class="form-control" id="status" name="status">
+                    <option>Penjualan</option>
+                    <option>Restock</option>                        
+                  </select>
                 </div>
-                <div class="form-group row">
-                  <label for="qty" class="col-sm-3 col-form-label">Qty</label>
-                  <div class="col-sm-9">
-                    <input type="number" min="1" class="form-control" id="qty" name="qty" placeholder="Qty" required>
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="qty" class="col-sm-3 col-form-label">Qty</label>
+                <div class="col-sm-9">
+                  <input type="number" min="1" class="form-control" id="qty" name="qty" placeholder="Qty" required>
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-10">
-                    <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
-                       </div>
-                     </div>
-                  </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <button type="submit" name="submit" value="submit" class="btn btn-secondary">Submit</button>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
-
-        </div>
-      </div>  
-        </main>
+        </div>  
+      </main>
         <script type="text/javascript"> 
       function change_season(){
         var xmlhttp=new XMLHttpRequest();

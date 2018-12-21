@@ -68,13 +68,10 @@ $admin = $_SESSION['username'];
     <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
       <div class="row">
         <div class="col-sm-12">
-          <div class="card text-center">
-            <div class="card-header">
-              Data Stock Monanisa
-            </div>
-            <div class="card-body">
-              <table class="table table-hover">
-                <thead class="thead-dark">
+          <h2> Data Stock Monanisa </h2>
+          <div class="vc_empty_space" style="height: 20px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
+              <table class="table table-sm">
+                <thead>
                   <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Created Date</th>
@@ -139,11 +136,9 @@ $admin = $_SESSION['username'];
                   }
                 ?>
               </table>
-            </div>
             <div class="card-footer text-muted">
               2 days ago
             </div>
-          </div>
         </div>
       </div>  
         </main>

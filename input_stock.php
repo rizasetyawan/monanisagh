@@ -65,48 +65,43 @@ $admin = $_SESSION['username'];
     </nav>
     <!-- Content -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">      
-    <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
-      <div class="row">
-        <div class="col-sm-6 offset-sm-3">
-          <div class="card bg-light">
-            <div class="card-header">New Stock</div>
-            <div class="card-body">
-              <form method="post" action="koneksi_newstock.php">
-                <div class="form-group row">
-                  <label for="season" class="col-sm-3 col-form-label">Season</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="season" name="season" placeholder="Season" required>
-                  </div>
+      <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
+        <div class="row">
+          <div class="col-sm-6">
+            <h3>Input New Stock</h3>
+            <div class="vc_empty_space" style="height: 20px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
+            <form class = "input" method="post" action="koneksi_newstock.php">
+              <div class="form-group row">
+                <label for="season" class="col-sm-3 col-form-label">Season</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="season" name="season" placeholder="Season" required>
                 </div>
-                <div class="form-group row">
-                  <label for="product" class="col-sm-3 col-form-label">Product</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="product" name="product" placeholder="Product" required>
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="product" class="col-sm-3 col-form-label">Product</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="product" name="product" placeholder="Product" required>
                 </div>
-                <div class="form-group row">
-                  <label for="color" class="col-sm-3 col-form-label">Color</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="color" name="color" placeholder="Color" required>
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="color" class="col-sm-3 col-form-label">Color</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="color" name="color" placeholder="Color" required>
                 </div>
-                <div class="form-group row">
-                  <label for="color" class="col-sm-3 col-form-label">Qty</label>
-                  <div class="col-sm-9">
-                    <input type="number" min="1" class="form-control" id="qty" name="qty" placeholder="Qty" required>
-                  </div>
+              </div>
+              <div class="form-group row">
+                <label for="color" class="col-sm-3 col-form-label">Qty</label>
+                <div class="col-sm-9">
+                  <input type="number" min="1" class="form-control" id="qty" name="qty" placeholder="Qty" required>
                 </div>
-                <div class="form-group row">
-                  <div class="col-sm-10">
-                    <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
-                       </div>
-                     </div>
-                  </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-sm-10">
+                  <button type="submit" name="submit" value="submit" class="btn btn-secondary">Submit</button>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
-
         </div>
       </div>    
     </main>
