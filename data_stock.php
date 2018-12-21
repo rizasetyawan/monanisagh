@@ -137,7 +137,9 @@ $admin = $_SESSION['username'];
                 ?>
               </table>
             <div class="card-footer text-muted">
-              2 days ago
+              <?php
+                echo "Last modified: " . date ("F d Y H:i:s.", getlastmod());
+              ?>
             </div>
         </div>
       </div>  
