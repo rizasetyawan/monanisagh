@@ -5,6 +5,47 @@ session_start();
 include "connection.php";
 $admin = $_SESSION['username'];
 ?>
+
+<?php
+try{
+  $dbcon=new PDO("mysql:host={$servername};dbname={$dbname}",$username,$password);
+  $dbcon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}catch(PDOException $ex){
+  die($ex->getMessage());
+}
+$stmt=$dbcon->prepare("SELECT season, SUM(qty) as qty FROM stock WHERE status = 'penjualan' GROUP BY season");
+$stmt->execute();
+$jsonseason=[];
+$jsonjumlah=[];
+
+while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+  extract($row);
+  $season=$row['season'];
+  $jumlah = $row['qty'];
+  $jsonseason[]=$season;
+  $jsonjumlah[]=$jumlah;
+}
+?>
+<?php
+try{
+  $dbcon=new PDO("mysql:host={$servername};dbname={$dbname}",$username,$password);
+  $dbcon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}catch(PDOException $ex){
+  die($ex->getMessage());
+}
+$stmt=$dbcon->prepare("SELECT season, SUM(qty) as qty FROM stock WHERE status = 'penjualan' GROUP BY season");
+$stmt->execute();
+$jsonseasonprofit=[];
+$jsonprofit=[];
+
+while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+  extract($row);
+  $seasonprofit=$row['season'];
+  $profit = $row['qty'];
+  $jsonseasonprofit[]=$seasonprofit;
+  $jsonprofit[]=$profit * 11000;
+}
+?>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -103,35 +144,37 @@ $admin = $_SESSION['username'];
         <div class="col-sm-3">
           <div class="card text-white bg-dark mb-3" style="width: 16rem;">
             <div class="card-body">
-              <h5 class="card-title">Jumlah Terjual</h5>
+              <h5 class="card-title">Total Profit</h5>
                 <?php
                   $penjualan = 0;
                   $qry = mysqli_query($conn,"SELECT sum(qty) FROM stock WHERE STATUS = 'Penjualan'");
                   while($row = mysqli_fetch_array($qry)){
                     $penjualan = $row[0];
+                    $profit = $penjualan * 11000;
                   }
                 ?>
-              <p class="card-text"><?php echo $penjualan;?> Pcs</p>
+              <p class="card-text">Rp. <?php echo $profit;?></p>
             </div>
           </div>
         </div>  
       </div> <!-- End of Row -->  
       <!-- Chart -->
       <div class="row">
+        <!-- Chart Penjualan -->
         <div class="col s12">
           <div class="card"> <!--warna-->
             <div class="card-content black-text">
               <div class="chart-responsive">
-                <canvas id="linechart" class="chartjs-render-monitor"></canvas>
+                <canvas id="linechart" class="chartjs-render-monitor" height="80"></canvas>
                 <script>
                   var ctx = document.getElementById("linechart").getContext('2d');
                   var myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5"],
+                        labels: <?php echo json_encode($jsonseason);?>,
                         datasets: [{
                             label: 'Penjualan',
-                            data: [12, 19, 3, 5, 2, 3],
+                            data: <?php echo json_encode($jsonjumlah);?>,
                             backgroundColor: [
                               'rgba(255, 99, 132, 0.2)',
                             ],
@@ -153,9 +196,61 @@ $admin = $_SESSION['username'];
             </div>
           </div>
         </div>
+      </div>
+      <div class="vc_empty_space" style="height: 25px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
+      <!-- Chart Profit -->
+      <div class="row">
+        <div class="col s12">
+          <div class="card"> <!--warna-->
+            <div class="card-content black-text">
+              <div class="chart-responsive">
+                <canvas id="barchart" class="chartjs-render-monitor" height="80"></canvas>
+                <script>
+                  var ctx = document.getElementById("barchart").getContext('2d');
+                  var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: <?php echo json_encode($jsonseasonprofit);?>,
+                        datasets: [{
+                            label: 'Profit',
+                            data: <?php echo json_encode($jsonprofit);?>,
+                            backgroundColor: [
+                              'rgba(105, 105, 105, 0.6)',
+                              'rgba(220, 220, 220, 0.6)',
+                              'rgba(210, 180, 140, 0.6)',
+                              'rgba(245, 222, 179, 0.6)',
+                              'rgba(95, 158, 160, 0.6)',
+                              'rgba(72, 209, 204, 0.6)',
+                              'rgba(173, 216, 230, 0.6)',
+                              'rgba(102, 205, 170, 0.6)',
+                              'rgba(143, 188, 139, 0.6)',
+                              'rgba(107, 142, 35, 0.6)',
+                              'rgba(144, 238, 144, 0.6)',
+                              'rgba(147, 112, 2019, 0.6)',
+                              'rgba(255, 218, 185, 0.6)',
+                              'rgba(255, 160, 122, 0.6)',
+                              'rgba(255, 182, 193, 0.6)',
+                              'rgba(205, 92, 92, 0.6)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                      scales: {
+                          yAxes: [{
+                              ticks: {
+                                  beginAtZero:true
+                              }
+                          }]
+                      }
+                    }
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
       </div><!-- endchart -->
-
-
       <!-- Table -->
       <div class="row">
         <div class="card-body">
