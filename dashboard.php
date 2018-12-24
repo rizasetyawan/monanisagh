@@ -108,8 +108,8 @@ while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
       </div>
     </nav>
     <!-- Content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">  
-    <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->        
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
       <div class="row">
         <div class="col-sm-3">
           <div class="card text-white bg-dark mb-3" style="width: 16rem;">
@@ -156,8 +156,8 @@ while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
               <p class="card-text">Rp. <?php echo $profit;?></p>
             </div>
           </div>
-        </div>  
-      </div> <!-- End of Row -->  
+        </div>
+      </div> <!-- End of Row -->
       <!-- Chart -->
       <div class="row">
         <!-- Chart Penjualan -->
@@ -267,19 +267,37 @@ while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
                 <th scope="col">Sisa Stock</th>
               </tr>
             </thead>
-          <?php                  
-            $select = mysqli_query($conn,"SELECT * FROM new_stock");
-               
-            $count=1;
-            $numbering=1;
-            while($row = mysqli_fetch_array($select)){ 
-              $code = $row['product_code'];  
+          <?php
+            $perulangan = mysqli_query($conn, "SELECT product_code FROM new_stock");
+
+            while($row_code=mysqli_fetch_array($perulangan)){
+              $product_code = $row_code["product_code"];
+              $select = mysqli_query($conn,"SELECT
+        	              season,
+        	              product,
+                      	color,
+                      	( SELECT SUM( qty ) FROM new_stock WHERE product_code = '$product_code' ) AS stockbaru,
+                      	( SELECT SUM( qty ) FROM stock WHERE `status` = 'Restock' AND product_code = '$product_code' ) AS restock,
+                      	( SELECT SUM( qty ) FROM stock WHERE `status` = 'Penjualan' AND product_code = '$product_code' ) AS jual,
+                      	( SELECT ( ( restock + stockbaru ) - jual ) FROM stock WHERE `status` = 'Restock' AND product_code = '$product_code' ) AS sisa_stock
+                      FROM
+                      	stock
+                      WHERE
+                      	product_code = '$product_code'
+                      GROUP BY
+                      	product_code");
+
+              $count=1;
+              $numbering;
+              while($row = mysqli_fetch_array($select)){
+
+
           ?>
           <tbody>
             <tr>
             <!-- no -->
               <th scope="row">
-              <?php echo $numbering; $numbering++; ?>
+              <?php echo $numbering + $count; $numbering++; ?>
               </th>
             <!-- season -->
               <td>
@@ -295,51 +313,32 @@ while ($row=$stmt->fetch(PDO::FETCH_ASSOC)){
                     </td>
                     <!-- new stock -->
                     <td>
-                      <?php echo $row["qty"]; ?>
+                      <?php echo $row["stockbaru"]; ?>
                     </td>
-                    <?php                  
-                      $restock = mysqli_query($conn, "SELECT qty FROM stock WHERE product_code = '$code' AND status = 'restock'");
-                      
-                      $count_restock=1;
-                      while($row_restock = mysqli_fetch_array($restock)) {
-                    ?>
                     <!-- restock -->
                     <td>
-                      <?php echo $row_restock["qty"];                        
+                      <?php echo $row["restock"];
                       ?>
                     </td>
-                    <?php
-                        $count_restock++;
-                      } 
-                    ?>
-                    <?php                  
-                      $sell = mysqli_query($conn, "SELECT qty FROM stock WHERE product_code = '$code' AND status = 'penjualan'");
-                      
-                      $count_sell=1;
-                      while($row_sell = mysqli_fetch_array($sell)) {
-                    ?>
                     <!-- penjualan -->
                     <td>
-                      <?php echo "hello"; ?>
+                      <?php echo $row["jual"]; ?>
                     </td>
-                    <?php
-                        $count_sell++;
-                      } 
-                    ?>
                     <!-- sisa -->
                     <td>
-                      <?php echo "hello"; ?>
+                      <?php echo $row["sisa_stock"]; ?>
                     </td>
                   </tr>
                   <?php
                   $count++;
                   }
+                }
                   ?>
-                </tbody>                
+                </tbody>
               </table>
-            </div> 
             </div>
-        </main>     
+            </div>
+        </main>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

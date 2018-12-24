@@ -64,11 +64,12 @@ $admin = $_SESSION['username'];
       </div>
     </nav>
     <!-- Content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">      
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
         <div class="row">
-          <div class="col-sm-6">
-            <h3>Input New Stock</h3>
+          <div class="card col-sm-6 shadow">
+            <br>
+            <h2>Input New Stock</h2>
             <div class="vc_empty_space" style="height: 20px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
             <form class = "input" method="post" action="koneksi_newstock.php">
               <div class="form-group row">
@@ -96,17 +97,17 @@ $admin = $_SESSION['username'];
                 </div>
               </div>
               <div class="form-group row">
-                <div class="col-sm-10">
-                  <button type="submit" name="submit" value="submit" class="btn btn-secondary">Submit</button>
+                <div class="col-sm-2 offset-sm-10">
+                  <button type="submit" name="submit" value="submit" class="btn btn-primary lg btn-block">Submit</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-      </div>    
+      </div>
     </main>
-    
-      
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

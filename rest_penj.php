@@ -15,11 +15,8 @@ $admin = $_SESSION['username'];
     <!-- Addition CSS -->
     <link type="text/css" rel="stylesheet" href="css/dashboard.css"  media="screen,projection"/>
 
-<<<<<<< HEAD
     <!-- Option Value JQuery-->
 
-=======
->>>>>>> f9776322f41980502f22b446a9e8d921d3f3b28f
   </head>
   <body>
     <!-- Navbar Menu -->
@@ -69,10 +66,11 @@ $admin = $_SESSION['username'];
       </div>
     </nav>
     <!-- Content -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">      
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="vc_empty_space" style="height: 50px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
         <div class="row">
-          <div class="col-sm-6">
+          <div class="card col-sm-6 shadow">
+            <br>
             <h2>Restock/Penjualan</h2>
             <div class="vc_empty_space" style="height: 20px"><span class="vc_empty_space_inner"></span></div> <!--Untuk space-->
             <form method="post" action="koneksi_insert.php">
@@ -82,7 +80,6 @@ $admin = $_SESSION['username'];
                 <div class="col-sm-9">
                   <select class="form-control" id="season" name="season" onChange="change_season()">
                     <option> Select </option>
-<<<<<<< HEAD
                     <?php
                       $sql_season = mysqli_query($conn, 'SELECT season FROM new_stock GROUP BY season');
                       while ($row_season = mysqli_fetch_array($sql_season)){
@@ -91,95 +88,55 @@ $admin = $_SESSION['username'];
                       <?php }?>
                     </select>
                   </div>
-=======
-                      <?php 
-                        $sql_season = mysqli_query($conn, 'SELECT season FROM new_stock GROUP BY season');
-                        while ($row_season = mysqli_fetch_array($sql_season)){                        
-                      ?>
-                    <option value="<?php echo $row_season['season'];?>" id="<?php echo $row_season['season'];?>"><?php echo $row_season['season'];?></option>    
-                      <?php }?>                 
-                  </select>
->>>>>>> f9776322f41980502f22b446a9e8d921d3f3b28f
                 </div>
-              </div>
-              <!-- PRODUCT -->
-              <div class="form-group row">
-                <label for="product" class="col-sm-3 col-form-label">Product</label>
-                <div class="col-sm-9">
-                  <select class="form-control" id="product" name="product" onChange='change_product()'>
-                    <option id = "product" value = "product"> Select </option>
-                  </select>
-                </div>
-<<<<<<< HEAD
-                <!-- COLOR -->
                 <div class="form-group row">
-                  <label for="color" class="col-sm-3 col-form-label">Color</label>
+                  <label for="product" class="col-sm-3 col-form-label">Product</label>
                   <div class="col-sm-9">
-                    <select class="form-control" id="color" name="color" onChange='change_color()'>
-                      <option id = "color" value = "color"> Select </option>
+                    <select class="form-control" id="product" name="product" onChange='change_product()'>
+                      <option id = "product" value = "product"> Select </option>
                     </select>
                   </div>
                 </div>
-                <!-- STATUS -->
-                <div class="form-group row">
-                  <label for="status" class="col-sm-3 col-form-label">Status</label>
-                  <div class="col-sm-9">
-                    <select class="form-control" id="status" name="status">
-                        <option>Penjualan</option>
-                        <option>Restock</option>
-                    </select>
+                  <!-- COLOR -->
+                  <div class="form-group row">
+                    <label for="color" class="col-sm-3 col-form-label">Color</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" id="color" name="color" onChange='change_color()'>
+                        <option id = "color" value = "color"> Select </option>
+                      </select>
+                    </div>
                   </div>
-=======
-              </div>
-              <!-- COLOR -->
-              <div class="form-group row">
-                <label for="color" class="col-sm-3 col-form-label">Color</label>
-                <div class="col-sm-9">
-                  <select class="form-control" id="color" name="color">      
-                    <option id = "color" value = "color"> Select </option> 
-                  </select>
+                  <!-- STATUS -->
+                  <div class="form-group row">
+                    <label for="status" class="col-sm-3 col-form-label">Status</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" id="status" name="status">
+                          <option>Penjualan</option>
+                          <option>Restock</option>
+                      </select>
+                    </div>
+                  </div>
+                <div class="form-group row">
+                  <label for="qty" class="col-sm-3 col-form-label">Qty</label>
+                  <div class="col-sm-9">
+                    <input type="number" min="1" class="form-control" id="qty" name="qty" placeholder="Qty" required>
+                  </div>
                 </div>
-              </div>
-              <!-- STATUS -->
-              <div class="form-group row">
-                <label for="status" class="col-sm-3 col-form-label">Status</label>
-                <div class="col-sm-9">
-                  <select class="form-control" id="status" name="status">
-                    <option>Penjualan</option>
-                    <option>Restock</option>                        
-                  </select>
->>>>>>> f9776322f41980502f22b446a9e8d921d3f3b28f
+                <div class="form-group row">
+                  <div class="col-sm-2 offset-sm-10">
+                    <button type="submit" name="submit" value="submit" class="btn btn-primary btn-block">Submit</button>
+                  </div>
                 </div>
+                </form>
               </div>
-              <div class="form-group row">
-                <label for="qty" class="col-sm-3 col-form-label">Qty</label>
-                <div class="col-sm-9">
-                  <input type="number" min="1" class="form-control" id="qty" name="qty" placeholder="Qty" required>
-                </div>
-              </div>
-              <div class="form-group row">
-                <div class="col-sm-10">
-                  <button type="submit" name="submit" value="submit" class="btn btn-secondary">Submit</button>
-                </div>
-              </div>
-            </form>
           </div>
-<<<<<<< HEAD
 
-        </div>
-      </div>
-    </div> <!-- end container -->
 
 
     <script type="text/javascript">
 
       var a;
 
-=======
-        </div>  
-      </main>
-        <script type="text/javascript"> 
->>>>>>> f9776322f41980502f22b446a9e8d921d3f3b28f
       function change_season(){
         var xmlhttpseason=new XMLHttpRequest();
         xmlhttpseason.open("GET", "ajax.php?season="+document.getElementById("season").value, false);
@@ -190,9 +147,8 @@ $admin = $_SESSION['username'];
       }
 
       function change_product(){
-        
+
         // alert(document.getElementById("product").value);
-<<<<<<< HEAD
         var xmlhttpproduct=new XMLHttpRequest();
         xmlhttpproduct.open("GET", "ajax.php?product="+document.getElementById("product").value +"&season="+ a, false);
         xmlhttpproduct.send();
@@ -200,17 +156,6 @@ $admin = $_SESSION['username'];
         document.getElementById("color").innerHTML=xmlhttpproduct.responseText;
       }
     </script>
-=======
-        var xmlhttp=new XMLHttpRequest();
-        xmlhttp.open("GET", "ajax.php?product="+document.getElementById("product").value, false);
-        xmlhttp.send(null);        
-        // alert(xmlhttp.responseText);
-        document.getElementById("color").innerHTML=xmlhttp.responseText;
-      }    
-    </script>  
-      
-
->>>>>>> f9776322f41980502f22b446a9e8d921d3f3b28f
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
