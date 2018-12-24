@@ -5,7 +5,7 @@
   include "connection.php";
   if (isset($_POST["submit"])) {
     date_default_timezone_set('Asia/Jakarta');
-    $date = date('Y-m-d h:i:s', time());
+    $date = date('Y-m-d H:i:s', time());
     $season = $_POST['season'];
     $product = $_POST['product'];
     $color = $_POST['color'];
@@ -17,7 +17,7 @@
     $code = $season."-".substr($product, 0,2)."-".$color;   
 
     if ($admin !== NULL) {
-      $insert = "INSERT INTO stock SET id = 'NULL', created_date = '$date', season = '$season', product = '$product', color = '$color', status = '$status', qty = '$qty', created_by = '$admin', product_code = '$code'";
+      $insert = "INSERT INTO stock SET created_date = '$date', season = '$season', product = '$product', color = '$color', status = '$status', qty = '$qty', created_by = '$admin', product_code = '$code'";
       $result = mysqli_query($conn, $insert);
       echo("<script>alert('Data Updated!');window.location.href='rest_penj.php';</script>");
     } else {

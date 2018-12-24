@@ -11,13 +11,17 @@ include("connection.php");
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Addition CSS -->
+    <link type="text/css" rel="stylesheet" href="css/login.css"  media="screen,projection"/>
+  
   </head>
   <body>
     <div class="container">
+      <img class="logo" src="img/logo.png" alt="">
       <div class="row">
         <div class="col-sm-6 offset-sm-3">
-          <div class="card bg-light">
-            <div class="card-header">Login</div>
+          <div class="card bg-transparent">
+            <div class="card-header">Admin Login</div>
             <div class="card-body">
               <form method="post" action="koneksi_login.php">
                 <div class="form-group row">
@@ -34,7 +38,7 @@ include("connection.php");
                 </div>                
                 <div class="form-group row">
                   <div class="col-sm-10">
-                    <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" name="submit" value="submit" class="btn btn-secondary">Login</button>
                   </div>
                 </div>
                   </div>
